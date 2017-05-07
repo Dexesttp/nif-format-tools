@@ -6,6 +6,7 @@ import {DOMParser, XMLSerializer} from "xmldom";
 import {load, save} from "./xml/file";
 import {getTestXml} from "./test-xml";
 import {Definition} from "./xml/model/index";
+const beautify = require("xml-beautifier");
 
 function getUnusedCompounds(data: Definition) {
 	let newCompounds = data.objects.reduce<string[]>((prev, o) => prev
@@ -45,8 +46,6 @@ function exportTest(xml: Document) {
 		fs.writeFile(path.resolve(__dirname, constants.testXmlPath), prettyTestXml);
 	});
 }
-
-const beautify = require("xml-beautifier");
 
 fs.readFile(path.resolve(__dirname, constants.inXmlPath), (err, rawXml) => {
 	if(err) {
