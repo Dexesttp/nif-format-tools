@@ -1,0 +1,33 @@
+{
+  "name": "nif-xml-tools",
+  "author": "NifTools team",
+  "version": "1.0.0",
+  "description": "Tools to analyze and modify the NifTools team XML files",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niftools/nifxml.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niftools/nifxml/issues"
+  },
+  "homepage": "https://github.com/niftools/nifxml#readme",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "test": "exit 1"
+  },
+  "dependencies": {
+    "xml-beautifier": "^0.3.0",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.24"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.18",
+    "@types/xmldom": "^0.1.29",
+    "typescript": "^2.3.2",
+    "tslint": "^5.2.0"
+  },
+  "license": "MIT",
+  "private": true
+}
