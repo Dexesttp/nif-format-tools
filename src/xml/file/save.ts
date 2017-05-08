@@ -17,8 +17,8 @@ function writeField(document: Document, parent: Element, field: Field) {
 		optionElement.setAttribute("vercond", field.version_conditional_expression);
 	if(field.match_user_version !== undefined)
 		optionElement.setAttribute("userver", field.match_user_version);
-	if(field.maximum_user_version !== undefined)
-		optionElement.setAttribute("userver2", field.maximum_user_version);
+	if(field.match_user_version_2 !== undefined)
+		optionElement.setAttribute("userver2", field.match_user_version_2);
 	if(field.condition !== undefined)
 		optionElement.setAttribute("cond", field.condition);
 	if(field.arg !== undefined)

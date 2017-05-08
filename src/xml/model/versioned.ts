@@ -10,6 +10,6 @@ export interface Versioned {
 	version_conditional_expression?: string;
 	/** If set, the object is only valid for the given user version */
 	match_user_version?: string;
-	/** If set, the object is only valid for user version before or including the given user version */
-	maximum_user_version?: string;
+	/** If set, the object is only valid for the given user version 2 */
+	match_user_version_2?: string;
 }

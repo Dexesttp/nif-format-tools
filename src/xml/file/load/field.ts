@@ -11,7 +11,7 @@ export function loadField(field: Element): Field {
 		maximum_version: field.getAttribute("ver2")||undefined,
 		version_conditional_expression: field.getAttribute("vercond")||undefined,
 		match_user_version: field.getAttribute("userver")||undefined,
-		maximum_user_version: field.getAttribute("userver2")||undefined,
+		match_user_version_2: field.getAttribute("userver2")||undefined,
 		arr1: field.getAttribute("arr1")||undefined,
 		arr2: field.getAttribute("arr2")||undefined,
 		arg: field.getAttribute("arg")||undefined,
