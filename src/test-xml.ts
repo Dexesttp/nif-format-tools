@@ -1,6 +1,17 @@
 import {DOMParser} from "xmldom";
 import {select} from "xpath";
 
+function cleanNode(nodeElement: Element) {
+	const text = select("text()", nodeElement).join("").trim();
+	const nodes = select("*", nodeElement).map<Node>((childNode: Node) => childNode.cloneNode(true));
+	if(text) {
+		nodeElement.textContent = text;
+		for(let childNode of nodes) {
+			nodeElement.appendChild(childNode);
+		}
+	}
+}
+
 export function getTestXml(xml: Document): Document {
 	const document = (new DOMParser()).parseFromString("<niftoolsxml />", "");
 	const root = document.getElementsByTagName("niftoolsxml")[0];
@@ -35,15 +46,18 @@ export function getTestXml(xml: Document): Document {
 		root.appendChild(objectElement);
 	}
 
-	for(let node of select("//basic | //enum", document)) {
+	for(let node of select("/niftoolsxml/*", document)) {
 		const nodeElement = node as Element;
 		if(!nodeElement)
 			continue;
-		const text = select("text()", nodeElement).map((child: Node) =>  `${(child.textContent||"")}`).join("").trim();
-		if(text) {
-			nodeElement.textContent = text;
-			// nodeElement.insertBefore(document.createTextNode(text), nodeElement.childNodes.item(0) || null);
-		}
+		cleanNode(nodeElement);
+	}
+
+	for(let node of select("/niftoolsxml/*/*", document)) {
+		const nodeElement = node as Element;
+		if(!nodeElement)
+			continue;
+		cleanNode(nodeElement);
 	}
 
 	return document;

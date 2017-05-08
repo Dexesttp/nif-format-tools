@@ -5,22 +5,34 @@ function writeField(document: Document, parent: Element, field: Field) {
 	const optionElement = document.createElement("add");
 	optionElement.setAttribute("name", field.name);
 	optionElement.setAttribute("type", field.type);
-	if(field.ver1 !== undefined)
-		optionElement.setAttribute("ver1", field.ver1);
-	if(field.ver2 !== undefined)
-		optionElement.setAttribute("ver2", field.ver2);
-	if(field.vercond !== undefined)
-		optionElement.setAttribute("vercond", field.vercond);
+	if(field.template !== undefined)
+		optionElement.setAttribute("template", field.template);
+	if(field.match_version !== undefined)
+		optionElement.setAttribute("ver", field.match_version);
+	if(field.minimum_version !== undefined)
+		optionElement.setAttribute("ver1", field.minimum_version);
+	if(field.maximum_version !== undefined)
+		optionElement.setAttribute("ver2", field.maximum_version);
+	if(field.version_conditional_expression !== undefined)
+		optionElement.setAttribute("vercond", field.version_conditional_expression);
+	if(field.match_user_version !== undefined)
+		optionElement.setAttribute("userver", field.match_user_version);
+	if(field.maximum_user_version !== undefined)
+		optionElement.setAttribute("userver2", field.maximum_user_version);
 	if(field.condition !== undefined)
 		optionElement.setAttribute("cond", field.condition);
+	if(field.arg !== undefined)
+		optionElement.setAttribute("arg", field.arg);
+	if(field.abstract !== undefined)
+		optionElement.setAttribute("abstract", field.abstract ? "1" : "0");
 	if(field.binary !== undefined)
 		optionElement.setAttribute("binary", field.binary ? "1" : "0");
+	if(field.calculated !== undefined)
+		optionElement.setAttribute("calculated", field.calculated ? "1" : "0");
 	if(field.arr1 !== undefined)
 		optionElement.setAttribute("arr1", field.arr1);
 	if(field.arr2 !== undefined)
 		optionElement.setAttribute("arr2", field.arr2);
-	if(field.template !== undefined)
-		optionElement.setAttribute("template", field.template);
 	if(field.default !== undefined)
 		optionElement.setAttribute("default", field.default);
 	optionElement.textContent = field.description||"";
@@ -43,7 +55,8 @@ export function save(data: Definition) : Document {
 		basicElement.setAttribute("name", basic.name);
 		basicElement.setAttribute("count", `${basic.count}`);
 		basicElement.setAttribute("niflibtype", basic.nifLibType);
-		basicElement.setAttribute("nifskopetype", basic.nifSkopeType);
+		if(basic.nifSkopeType !== undefined)
+			basicElement.setAttribute("nifskopetype", basic.nifSkopeType);
 		if(basic.isTemplate !== undefined)
 			basicElement.setAttribute("istemplate", basic.isTemplate ? "1" : "0");
 		basicElement.textContent = basic.description;
@@ -54,6 +67,10 @@ export function save(data: Definition) : Document {
 		const enumElement = document.createElement("enum");
 		enumElement.setAttribute("name", enumValue.name);
 		enumElement.setAttribute("storage", `${enumValue.storage}`);
+		if(enumValue.minimum_version !== undefined)
+			enumElement.setAttribute("ver1", enumValue.minimum_version);
+		if(enumValue.maximum_version !== undefined)
+			enumElement.setAttribute("ver1", enumValue.maximum_version);
 		enumElement.textContent = enumValue.description;
 		for(let optionValue of enumValue.options) {
 			const optionElement = document.createElement("option");
@@ -87,12 +104,12 @@ export function save(data: Definition) : Document {
 			compoundElement.setAttribute("niflibtype", compound.nifLibType);
 		if(compound.nifSkopeType !== undefined)
 			compoundElement.setAttribute("nifskopetype", compound.nifSkopeType);
-		if(compound.ver1 !== undefined)
-			compoundElement.setAttribute("ver1", compound.ver1);
-		if(compound.ver2 !== undefined)
-			compoundElement.setAttribute("ver2", compound.ver2);
-		if(compound.vercond !== undefined)
-			compoundElement.setAttribute("vercond", compound.vercond);
+		if(compound.minimum_version !== undefined)
+			compoundElement.setAttribute("ver1", compound.minimum_version);
+		if(compound.maximum_version !== undefined)
+			compoundElement.setAttribute("ver2", compound.maximum_version);
+		if(compound.version_conditional_expression !== undefined)
+			compoundElement.setAttribute("vercond", compound.version_conditional_expression);
 		if(compound.isTemplate !== undefined)
 			compoundElement.setAttribute("istemplate", compound.isTemplate ? "1" : "0");
 		compoundElement.textContent = compound.description;
@@ -108,12 +125,12 @@ export function save(data: Definition) : Document {
 			compoundElement.setAttribute("niflibtype", compound.nifLibType);
 		if(compound.nifSkopeType !== undefined)
 			compoundElement.setAttribute("nifskopetype", compound.nifSkopeType);
-		if(compound.ver1 !== undefined)
-			compoundElement.setAttribute("ver1", compound.ver1);
-		if(compound.ver2 !== undefined)
-			compoundElement.setAttribute("ver2", compound.ver2);
-		if(compound.vercond !== undefined)
-			compoundElement.setAttribute("vercond", compound.vercond);
+		if(compound.minimum_version !== undefined)
+			compoundElement.setAttribute("ver1", compound.minimum_version);
+		if(compound.maximum_version !== undefined)
+			compoundElement.setAttribute("ver2", compound.maximum_version);
+		if(compound.version_conditional_expression !== undefined)
+			compoundElement.setAttribute("vercond", compound.version_conditional_expression);
 		if(compound.abstract !== undefined)
 			compoundElement.setAttribute("abstract", compound.abstract ? "1" : "0");
 		if(compound.inherit !== undefined)

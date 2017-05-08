@@ -28,14 +28,18 @@ function getUnusedCompounds(data: Definition) {
 
 function exportData(data: Definition) {
 	const newXml = save(data);
-	const prettyXmlText = beautify((new XMLSerializer()).serializeToString(newXml));
+	const xmlText = (new XMLSerializer()).serializeToString(newXml);
+	const prettyXmlText = beautify(xmlText);
 	if (!fs.existsSync(path.resolve(__dirname, constants.outFolder)))
 		fs.mkdirSync(path.resolve(__dirname, constants.outFolder));
 	fs.unlink(path.resolve(__dirname, constants.outJsonPath), () => {
 		fs.writeFile(path.resolve(__dirname, constants.outJsonPath), JSON.stringify(data, undefined, 4));
 	});
 	fs.unlink(path.resolve(__dirname, constants.outXmlPath), () => {
-		fs.writeFile(path.resolve(__dirname, constants.outXmlPath), prettyXmlText);
+		fs.writeFile(path.resolve(__dirname, constants.outXmlPath), xmlText);
+	});
+	fs.unlink(path.resolve(__dirname, constants.prettyOutXmlPath), () => {
+		fs.writeFile(path.resolve(__dirname, constants.prettyOutXmlPath), prettyXmlText);
 	});
 }
 

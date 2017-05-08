@@ -4,8 +4,8 @@ import {getText} from "./text";
 
 export function loadOption(option: Element): Option {
 	return {
-		name: option.getAttribute("name") || "",
-		value: +(option.getAttribute("value") || ""),
+		name: option.getAttribute("name")||"",
+		value: +(option.getAttribute("value")||""),
 		description: getText(option),
 	};
 }

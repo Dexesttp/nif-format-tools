@@ -6,9 +6,9 @@ export function loadEnum(enumElement: Element): Enum {
 	return {
 		name: enumElement.getAttribute("name")||"",
 		storage: enumElement.getAttribute("storage")||"",
-		ver1: enumElement.hasAttribute("ver1") ? enumElement.getAttribute("ver1")||"" : undefined,
-		ver2: enumElement.hasAttribute("ver2") ? enumElement.getAttribute("ver2")||"" : undefined,
-		vercond: enumElement.hasAttribute("vercond") ? enumElement.getAttribute("vercond")||"" : undefined,
+		minimum_version: enumElement.getAttribute("ver1")||undefined,
+		maximum_version: enumElement.getAttribute("ver2")||undefined,
+		version_conditional_expression: enumElement.getAttribute("vercond")||undefined,
 		description: getText(enumElement),
 		options: loadOptions(enumElement),
 	};

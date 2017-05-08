@@ -6,10 +6,8 @@ export function loadBasic(basic: Element): Basic {
 		name: basic.getAttribute("name")||"",
 		count: +(basic.getAttribute("count")||"0"),
 		nifLibType: basic.getAttribute("niflibtype")||"",
-		nifSkopeType: basic.getAttribute("nifskopetype")||"",
-		isTemplate: basic.hasAttribute("istemplate")
-			? !!(basic.getAttribute("istemplate"))
-			: undefined,
+		nifSkopeType: basic.getAttribute("nifskopetype")||undefined,
+		isTemplate: basic.hasAttribute("istemplate") ? basic.getAttribute("istemplate")==="1" : undefined,
 		description: getText(basic),
 	};
 }
